@@ -11,8 +11,8 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 CMakeLists.txt
-main.cpp
 cmake-build-debug
 Dog.cpp
 Dog.h
-
+main.cpp
+!classtemplate/main.cpp
