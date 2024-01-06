@@ -12,9 +12,8 @@ CTestTestfile.cmake
 _deps
 CMakeLists.txt
 cmake-build-debug
-Dog.cpp
-Dog.h
-main.cpp
-!classtemplate/main.cpp
 
+
+
+/main.cpp
 .idea
