@@ -16,6 +16,5 @@ Dog.cpp
 Dog.h
 main.cpp
 !classtemplate/main.cpp
-*.cpp
-*.h
+
 .idea
