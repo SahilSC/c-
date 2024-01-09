@@ -6,6 +6,7 @@ struct Widget{
     int x;
     int y;
 };
+
 struct Gibbet{
     /*
      * In the case fields are not set,
@@ -21,10 +22,8 @@ struct Gibbet{
 struct Character {
     bool evil;
     int age;
-    /*
-     * doing int age = 7 is the same as putting age(7) in member
-     * initialization list
-     */
+    //int age{7} is the same as putting age(7) in the default constructor member initializer list
+    //Note member-initializer-list takes precedence over class body initializations
 
     /*
      * Member initialization list.
@@ -32,6 +31,11 @@ struct Character {
      * setting evil and age to default values and then resetting
      * those values in the constructor, the fields are directly
      * initialized.
+     *
+     * NOTE: the initializer lists executes in the order set by the
+     * order of fields in the class
+     *
+     * References & consts should be initialized here.
      */
     Character(bool evil, int age) : evil(evil), age(age){};
 };
@@ -78,7 +82,7 @@ int main() {
      */
 
     /*
-     * Most vexing parse
+     * MOST VEXING PARSE
      * Not allowed to call default constructor
      * because interpreted as function declaration
      * like int stuff();

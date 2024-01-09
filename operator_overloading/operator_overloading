@@ -38,6 +38,14 @@ struct Coord {
         return copy;
     }
 
+    //Some operators require returning references for chaining
+    Coord& operator*=(int other) {
+        x*=other;
+        y*=other;
+        z*=other;
+        return *this;
+    }
+
 };
 
 //Overloading outside/Free function
