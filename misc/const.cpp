@@ -28,7 +28,7 @@ int main(){
     //1.
     int x = 4;
     const int *constptr{&x};
-    //(*constptr)++; not allowed
+    //(*constptr)++; illegal
     constptr = nullptr;
 
     //2.
