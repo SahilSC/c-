@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+/*
+ * Can overload INSIDE or OUTSIDE (a.k.a FREE functions)
+ */
+struct Coord {
+    int x;
+    int y;
+    int z;
+
+    //Use const and & if not modifying
+    Coord operator+(const Coord& other) {
+        return Coord{x + other.x,
+                     y + other.y,
+                     z + other.z};
+    }
+
+    //Unary operator
+    Coord operator-() {
+        return Coord{-x, -y, -z};
+    }
+
+    //Prefix
+    Coord& operator++() {
+        x++;
+        y++;
+        z++;
+        return *this;
+    }
+
+    //Postfix
+    Coord operator++(int) {
+        Coord copy = *this;
+        x++;
+        y++;
+        z++;
+        return copy;
+    }
+
+};
+
+//Overloading outside/Free function
+Coord operator+(Coord& one, Coord& two) {
+    return Coord{one.x + two.x,
+                 one.y + two.y,
+                 one.z + two.z};
+}
+
+/*
+ * Functions not commutative in C++ (A*B != B*A). If you want it to be, you
+ * need two separate functions
+ */
+Coord operator*(Coord& one, int multiplier) {
+    return Coord{one.x * multiplier,
+                 one.y * multiplier,
+                 one.z * multiplier};
+}
+
+//Can define one in terms of another
+Coord operator*(int multiplier, Coord& one) {
+    return one * multiplier;
+}
+
+
+int main(){
+
+}
