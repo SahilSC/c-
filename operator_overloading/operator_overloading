@@ -70,7 +70,11 @@ Coord operator*(int multiplier, Coord& one) {
     return one * multiplier;
 }
 
+ostream& operator<<(ostream& o, Coord c) {
+    o << "x: " << c.x << " y: " << c.y << " z: " << c.z;
+    return o;
+}
 
 int main(){
-
+    cout << Coord{1, 2, 3} << endl;
 }

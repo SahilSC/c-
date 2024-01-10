@@ -1,5 +1,7 @@
 #include <iostream>
+#include <memory>
 
+using namespace std;
 int main(){
 
     /*
@@ -40,4 +42,26 @@ int main(){
     const int* const constptrconst{&x};
     //constptrconst = nullptr; illegal
     //(*constptrconst)++; illegal
+
+    /*
+     * SMART POINTERS
+     * 1. const auto Pointer{make_unique<int>(42)) = const pointer to non-const
+     * 2. auto Pointer{make_unique<const int>(42)) = non-const pointer to const
+     * 3. const auto Pointer{make_unique<const int>(42)) = const pointer to const
+     */
+
+    //1
+    const auto p1{make_unique<int>(42)};
+    (*p1)++;
+    //p1.reset(); illegal
+
+    //2
+    auto p2{make_unique<const int>(42)};
+    //(*p2)++; illegal
+    p2.reset();
+
+    //3
+    const auto p3{make_unique<const int>(42)};
+    //(*p3)++; illegal
+    //p3.reset(); illegal
 }

@@ -3,20 +3,6 @@ using namespace std;
 
 struct Enemy {
     int age;
-};
-
-Enemy* getRef() {
-    Enemy e;
-    return &e;
-}
-
-int main(){
-
-}#include <iostream>
-using namespace std;
-
-struct Enemy {
-    int age;
     ~Enemy() {
         cout << "Destructor!" << endl;
     }
