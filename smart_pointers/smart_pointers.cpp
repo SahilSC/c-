@@ -21,16 +21,11 @@ void makeStuff(Character* ptr) {
     cout << "Making stuff" << endl;
 }
 
-/*
- * SMART POINTERS
- * Allocated on the stack and points to heap
- * Can derefence * and use -> like normal
- */
-int main(){
-
+void uniqueinfo() {
     /*
      * UNIQUE POINTERS (Sole ownership (no copying allowed, copy ctor deleted)
      */
+
     /*
      * 1. get() = gets underlying raw pointer
      * 2. std::move() transfers ownership. Note this is one of the few times c++ makes assertions
@@ -76,6 +71,35 @@ int main(){
      * 1. Only use unique_ptr with free store/heap
      * 2. Don't make two unique_ptrs point to the same thing (ex. Pointer1.reset(Pointer2.get())
      */
+}
 
+void sharedinfo() {
+    /*
+     * SHARED POINTERS (allow multiple owners & deleted after last shared pointer deleted)
+     */
+
+    /*
+     * (no release)
+     * 1. get()
+     * 2. std::move()
+     * 3. reset([new obj])
+     * 4. swap()
+     * 5. use_count() = number of owners
+     * 6.
+     */
+    auto sharedptr{make_shared<Character>("Bibby")};
+    auto other {sharedptr};
+    cout << other.use_count() << endl; //2
+
+}
+/*
+ * SMART POINTERS
+ * Allocated on the stack and points to heap
+ * Can dereference * and use -> like normal
+ */
+int main(){
+
+//    uniqueinfo();
+    sharedinfo();
 
 }

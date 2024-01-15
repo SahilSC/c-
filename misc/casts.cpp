@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 using namespace std;
 
 /*
@@ -43,9 +44,24 @@ void doStuff(Character& c) {
      * virtual ~SomeType() = default;
      */
 
+    /*
+     * SMART POINTERS
+     * 1. Use static_pointer_cast and dynamic_pointer_cast, which return shared_ptrs instead of raw
+     */
+
     //static_cast<Goblin*>(&c)->Enrage(); Undefined behavior
     Goblin* g = dynamic_cast<Goblin*>(&c);
     if (g) {
+        cout << "Yo this was a Goblin!" << endl;
+    }
+    else {
+        cout << "Not a goblin..." << endl;
+    }
+}
+
+void pointerStuff(shared_ptr<Character> c) {
+    shared_ptr<Goblin> gob {dynamic_pointer_cast<Goblin>(c)};
+    if (gob) {
         cout << "Yo this was a Goblin!" << endl;
     }
     else {
@@ -74,4 +90,12 @@ int main(){
     doStuff(g);
     doStuff(c);
 
+    /*
+     * Works with smart pointers too
+     */
+    auto character{make_shared<Character>()};
+    auto goblin{make_shared<Goblin>()};
+
+    pointerStuff(character);
+    pointerStuff(goblin);
 }

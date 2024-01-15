@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
-
+#include <memory>
+struct Bone{
+    int hunger{20};
+};
 class Dog {
 private:
     std::string name;
