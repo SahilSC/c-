@@ -1,0 +1,4 @@
+Constructive Algorithms
+=======================
+- https://codeforces.com/problemset/problem/1924/A
+  - If the answer is YES or NO, try creating a constructive counter-case

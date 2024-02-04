@@ -45,8 +45,10 @@ int main(){
     if (sorted.size() != courses) {
         cout << "IMPOSSIBLE";
     }
-    for (int i = 0; i < sorted.size() - 1; i++) {
-        cout << sorted[i] << " ";
+    else {
+        for (int i = 0; i < sorted.size() - 1; i++) {
+            cout << sorted[i] << " ";
+        }
+        cout << sorted[courses - 1];
     }
-    cout << sorted[courses - 1];
 }
