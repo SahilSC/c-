@@ -24,8 +24,11 @@ Dog::~Dog() {
 
 /**
  * Copy constructor.
- * Provided by default by compiler if no user-defined move constructor/assignment
- * and automatically shallow copies each field (deletes if unique pointer is used)
+ * Provided: by default by compiler and automatically shallow copies each field.
+ * Not provided:
+ *  - if no user-defined move constructor/assignment
+ *  - if any field has a deleted copy ctor (e.g. unique_ptr)
+ *
  * Issue will arise if you need a deep copy (e.g. you want to copy a pointer's pointed-to data).
  * Parameter is reference, otherwise infinite loop is caused when copying into parameter.
  * @param other the parameter to copy
