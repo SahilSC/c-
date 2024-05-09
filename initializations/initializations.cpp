@@ -23,7 +23,8 @@ struct Character {
     bool evil;
     int age;
     //int age{7} is the same as putting age(7) in the default constructor member initializer list
-    //Note member-initializer-list takes precedence over class body initializations
+    //Note member-initializer-list takes precedence over class body initializations (when they are
+    //initialized in the same line of declaration)
 
     /*
      * Member initialization list.
