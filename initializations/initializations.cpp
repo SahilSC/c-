@@ -2,12 +2,12 @@
 
 using namespace std;
 
-struct Widget{
+struct Widget {
     int x;
     int y;
 };
 
-struct Gibbet{
+struct Gibbet {
     /*
      * In the case fields are not set,
      * objects are initialized through default constructor,
@@ -26,54 +26,63 @@ struct Character {
     //Note member-initializer-list takes precedence over class body initializations (when they are
     //initialized in the same line of declaration)
 
+
     /*
-     * Member initialization list.
+     * MEMBER INITIALIZATION LIST.
      * Instead of an instance of Character
      * setting evil and age to default values and then resetting
      * those values in the constructor, the fields are directly
      * initialized.
      *
-     * NOTE: the initializer lists executes in the order set by the
+     * NOTE:
+     * 1) the initializer lists executes in the order set by the
      * order of fields in the class
-     *
-     * References & consts should be initialized here.
+     * 2) References & consts should be initialized here.
      */
-    Character(bool evil, int age) : evil(evil), age(age){};
+    Character(bool evil, int age) : evil(evil), age(age) {};
+
+    /*
+     * DELEGATING CONSTRUCTOR
+     * Calls another constructor in the same class
+     * NOTE:
+     * 1) cannot add other items to member initializer list after
+     */
+    Character(bool evil) : Character(evil, 9999) {};
+
 };
 
 int main() {
     /*
-     * Default initialization
+     * DEFAULT INITIALIZATION
      */
     Widget w;
     cout << w.x; //junk
 
-
     /*
-     * Uniform Initialization/Brace initialization
+     * UNIFORM INITIALIZATION/BRACE INITIALIZATION
      */
     int pi{3};
 
     /*
-     * Direct initialization
+     * DIRECT INITIALIZATION
      */
     Character sam(false, 10);
     //braces prevent type conversion
     Character samantha{false, 10};
 
     /*
-     * Copy initialization
+     * COPY INITIALIZATION
      */
     Character sammy = sam;
 
     /*
-     * Copy-list initialization
+     * COPY-LIST INITIALIZATION
      */
     //same as Character sage{false, 10} except no EXPLICIT constructor
     Character sage = {false, 10};
 
     /*
-     * Aggregate initialization
+     * AGGREGATE INITIALIZATION
      */
     //if no constructors explicitly defined, can use {...} to define fields in order
     Widget myWidget{1, 3};

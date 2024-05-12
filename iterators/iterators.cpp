@@ -4,9 +4,10 @@
 #include <list>
 #include <vector>
 #include <array>
+
 using namespace std;
 
-void increment(int& x) {
+void increment(int &x) {
     x++;
 }
 
@@ -23,14 +24,18 @@ void Log2(int const &x) {
  * - std::vector<int>::iterator A;
  * - std::vector<int>::const_iterator A;
  */
-int main(){
+int main() {
 
     /*
      * ITERATOR TYPES
      * 1. Forward = advance one step forward at a time (++ postfix/prefix)
+     *    - forward_list
      * 2. Bidirectional = advance one step forward/backward (++/-- postfix/prefix)
+     *    - list
+     *    - map
      * 3. Random Access Iterator= advance forward/backward any distance (++/-- postfix/prefix, +=/-=)
-     *
+     *    - array
+     *    - vector
      * Iterator hierarchy: 2 is 1, 3 is 2 and 1
      */
 
@@ -51,14 +56,14 @@ int main(){
     //st2-=1;
 
     //3. Random Access
-    array<int, 5 > alist{1, 2, 3, 4, 5};
+    array<int, 5> alist{1, 2, 3, 4, 5};
     vector<int> v1{1, 2, 3, 4, 5};
     auto st3 = alist.begin();
     auto st4 = alist.begin();
     //can add or subtract any amount
     st3++;
-    st4+=2;
-    st3-=1;
+    st4 += 2;
+    st3 -= 1;
     st3--;
 
     /*

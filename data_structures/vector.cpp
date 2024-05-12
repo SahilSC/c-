@@ -3,20 +3,20 @@
 
 using namespace std;
 
-int main(){
+int main() {
     /*
-     * Constructors
+     * CONSTRUCTORS
      */
 
     //1. Range constructor
-    int myints[] = {10, 10, 10, 20, 20, 20,  30, 30};
+    int myints[] = {10, 10, 10, 20, 20, 20, 30, 30};
     vector<int> v(myints, myints + 8);
 
     //2. Copy constructor
     vector<int> cpy1 = vector(v);
 
     /*
-     * Algorithms
+     * ALGORITHMS
      */
     sort(v.begin(), v.end());
 
@@ -32,3 +32,4 @@ int main(){
     vector<int>::iterator it3 = lower_bound(cpy2.begin(), cpy2.end(), 20);
     cout << it3 - cpy2.begin() << endl; //3
 
+}
