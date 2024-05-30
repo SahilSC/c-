@@ -145,6 +145,11 @@ int main() {
     mm.erase(mm.begin());
     cout << "mm: " << mm << endl; //mm: { b: 2, }
 
+    //2) erase(Key k)
+    mm.erase("b");
+    cout << "mm: " << mm << endl; //mm:
+
+
     /*
      * USEFUL METHODS
      */
@@ -191,5 +196,6 @@ int main() {
     /*
      * MISC
      * - bidirectional iterators
+     * - to reverse sort a map, pass in std::greater<Key k> as third param
      */
 }
