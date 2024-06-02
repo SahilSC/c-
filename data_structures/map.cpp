@@ -153,7 +153,6 @@ int main() {
     /*
      * USEFUL METHODS
      */
-
     /*
      * Find an element
      * - find() (better) -> iterator to item or end
@@ -170,6 +169,7 @@ int main() {
      * Size/Empty
      * - size()
      * - empty()
+     * - reserve(size_t count)- reserves enough buckets so at least count entries could be placed
      */
     cout << "size: " << nn.size() << endl; //1
     cout << "is empty?: " << nn.empty() << endl; //0

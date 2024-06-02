@@ -57,10 +57,21 @@ int main() {
     temp.push_back(5);
     print(temp);
 
-    //2. emplace_back
+    //2. emplace_back - passes constructor arguments
     temp.emplace_back(10);
 
-    //3. insert(Iterator it, Value v) -
+    //3. insert(Iterator it, Value v) - inserts v at value after +;
+    temp.insert(temp.begin(), 5);
+    print(temp); // 5 is at beginning
+
+    //4. insert(Iterator it, size_t count, Value v) - inserts count of v before it
+    temp.insert(temp.begin(), 10, -1);
+    print(temp);
+
+    //4. insert(const_iterator pos, InputIt first, InputIt last) - inserts contents of [first, last) before pos
+    vector<int> tempinsert{1, -1, 2, -2};
+    temp.insert(temp.begin() + 2, tempinsert.begin(), tempinsert.end());
+    print(temp);
 
 
     /*
