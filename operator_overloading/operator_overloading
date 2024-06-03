@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 /*
@@ -10,7 +11,7 @@ struct Coord {
     int z;
 
     //Use const and & if not modifying
-    Coord operator+(const Coord& other) {
+    Coord operator+(const Coord &other) {
         return Coord{x + other.x,
                      y + other.y,
                      z + other.z};
@@ -22,7 +23,7 @@ struct Coord {
     }
 
     //Prefix
-    Coord& operator++() {
+    Coord &operator++() {
         x++;
         y++;
         z++;
@@ -39,17 +40,22 @@ struct Coord {
     }
 
     //Some operators require returning references for chaining
-    Coord& operator*=(int other) {
-        x*=other;
-        y*=other;
-        z*=other;
+    Coord &operator*=(int other) {
+        x *= other;
+        y *= other;
+        z *= other;
         return *this;
     }
 
+    // to use printing inline
+    // friend ostream& operator<<(ostream& o, Coord c) {
+    //     o << "x: " << c.x << " y: " << c.y << " z: " << c.z;
+    //     return o;
+    // }
 };
 
 //Overloading outside/Free function
-Coord operator+(Coord& one, Coord& two) {
+Coord operator+(Coord &one, Coord &two) {
     return Coord{one.x + two.x,
                  one.y + two.y,
                  one.z + two.z};
@@ -59,22 +65,22 @@ Coord operator+(Coord& one, Coord& two) {
  * Functions not commutative in C++ (A*B != B*A). If you want it to be, you
  * need two separate functions
  */
-Coord operator*(Coord& one, int multiplier) {
+Coord operator*(Coord &one, int multiplier) {
     return Coord{one.x * multiplier,
                  one.y * multiplier,
                  one.z * multiplier};
 }
 
 //Can define one in terms of another
-Coord operator*(int multiplier, Coord& one) {
+Coord operator*(int multiplier, Coord &one) {
     return one * multiplier;
 }
 
-ostream& operator<<(ostream& o, Coord c) {
+ostream &operator<<(ostream &o, Coord c) {
     o << "x: " << c.x << " y: " << c.y << " z: " << c.z;
     return o;
 }
 
-int main(){
+int main() {
     cout << Coord{1, 2, 3} << endl;
 }
