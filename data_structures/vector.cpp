@@ -1,13 +1,42 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include <unordered_map>
 
 using namespace std;
 
 template<typename T>
-void print(vector<T> v) {
+void print(vector<T> v, string s = "") {
+    if (!s.empty())
+        cout << s << ": ";
     for_each(v.begin(), v.end(), [](T a) { cout << a << " "; });
     cout << endl;
 }
+
+struct Pair {
+    int x;
+    int y;
+
+    friend ostream &operator<<(ostream &o, Pair p) {
+        o << "{" << p.x << ", " << p.y << "}";
+        return o;
+    }
+};
+
+struct Interval {
+    int x;
+    int y;
+
+    friend ostream &operator<<(ostream &o, Interval p) {
+        o << "{" << p.x << ", " << p.y << "}";
+        return o;
+    }
+
+    bool operator<(Interval p2) const {
+        if (this->x != p2.x) return this->x - p2.x;
+        return this->y != p2.y;
+    }
+};
 
 int main() {
     /*
@@ -74,9 +103,41 @@ int main() {
 
 
     /*
-     * ALGORITHMS
+     * DELETION
+     * erase(input it)/erase(input first, input second) - erases elements at it or from [first, second)
      */
+    vector<int> ea1{1, 2, 3, 4};
+    ea1.erase(ea1.begin(), ea1.end() - 2);
+    cout << "erase! ";
+    print(ea1);
+
+
+    /*
+     * ALGORITHMS
+     * sort(RandomIt st, RandomIt end)/sort(RandomIt st, RandomIt end, Compare comp)
+     */
+
+    //sort
     sort(v.begin(), v.end());
+    print(v, "increasing sorted vector");
+
+    //less (default) uses <, greater uses >
+    sort(v.begin(), v.end(), greater<>());
+
+    vector<Pair> pv{{1,  5},
+                    {1,  3},
+                    {-1, 10}};
+    sort(pv.begin(), pv.end(), [](const Pair &p1, const Pair &p2) {
+        if (p1.x != p2.x) return p1.x - p2.x;
+        else return p1.y - p2.y;
+    });
+    print(pv, "pairs sorted");
+
+    vector<Interval> interval{{1,  5},
+                              {1,  3},
+                              {-1, 10}};
+    sort(interval.begin(), interval.end());
+    print(interval, "interval sorted");
 
     /*
      * Upperbound = iterator to element in range [start, end) that is greater than val or last if
@@ -90,4 +151,28 @@ int main() {
     vector<int>::iterator it3 = lower_bound(cpy2.begin(), cpy2.end(), 20);
     cout << it3 - cpy2.begin() << endl; //3
 
+    /*
+     * USEFUL METHODS
+     * - assign(count, value)/assign(input it, input end)/assign(initializer list) - REPLACES contents
+     * - resize(count)/resize(count, Value val) - does nothing or shortens if count < v.size(), otherwise adds
+     *      default-initialized values or v
+     * - reserve(count) - changes capacity to count (BUT SIZE IS UNCHANGED) so vector doesn't have to resize as much
+     * - clear() - clear vectors (capacity unchanged)
+     */
+    //assign
+    vector<int> a1;
+    a1.assign(10, 100);
+    print(a1);
+
+    //resize
+    vector<int> a2;
+    a2.resize(10);
+    a2.push_back(4);
+    cout << "a2 size " << a2.size() << endl; //ADDS to size of vector!
+    a2.resize(1, -999); //a2 is unchanged
+    print(a2);
+
+    //reserve
+    a2.reserve(10000); //size is unchanged
+    cout << "a2 size after reserve: " << a2.size() << endl; //ADDS to size of vector!
 }
