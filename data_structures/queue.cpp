@@ -72,6 +72,8 @@ int main() {
 
     /*
      * USEFUL METHODS
+     * empty()
+     * size()
      */
 
     /*
