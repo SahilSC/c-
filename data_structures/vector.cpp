@@ -7,7 +7,6 @@ template<typename T>
 void print(vector<T> v) {
     for_each(v.begin(), v.end(), [](T a) { cout << a << " "; });
     cout << endl;
-
 }
 
 int main() {

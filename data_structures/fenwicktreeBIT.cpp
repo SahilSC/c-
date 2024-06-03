@@ -71,7 +71,8 @@ struct FenwickTree {
     //only considers entries below r
     int getsum(int r) {
         int res = 0;
-        for (; r >= 0; r = r & (r + 1) - 1) {
+        //NEED parenthesis around r & (r+1)
+        for (; r >= 0; r = (r & (r + 1)) - 1) {
             res += tree[r];
         }
         return res;
