@@ -58,8 +58,20 @@ struct FenwickTree {
     }
 
     FenwickTree(vector<int> &a) : FenwickTree(a.size()) {
-        for (int i = 0; i < a.size(); i++) {
-            update(i, a[i]);
+        //O(NlogN)
+        // for (int i = 0; i < a.size(); i++) {
+        //     update(i, a[i]);
+        // }
+        //O(N)
+        //Assume that tree[0..i-1] are populated correctly. Also note that in the loop at iteration j
+        //the next number h(j) that satisifes g(h(j)) <= g(j) <= j < h(j) is modified. Also note that in for a given
+        //number j, only indices tree[g(j)...j] can affect it. So, if
+        //g(i+1) == i+1, tree[i+1] = a[i+1]
+        //g(i+1) < i + 1, tree[i+1] = tree[i] + a[i+1]
+        for (int i = 0; i < n; i++) {
+            tree[i] += a[i];
+            int r = i | (i + 1);
+            if (r < n) tree[r] += tree[i];
         }
     }
 

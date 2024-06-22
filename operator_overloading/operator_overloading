@@ -47,7 +47,14 @@ struct Coord {
         return *this;
     }
 
-    // to use printing inline
+    //can return by reference and/or remove constmess
+    const int &operator[](size_t id) const {
+        if (id == 0) return x;
+        return y;
+
+    }
+
+    // to use printing in class
     // friend ostream& operator<<(ostream& o, Coord c) {
     //     o << "x: " << c.x << " y: " << c.y << " z: " << c.z;
     //     return o;

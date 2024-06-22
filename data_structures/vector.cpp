@@ -1,4 +1,6 @@
+
 #include <iostream>
+#include <numeric>
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
@@ -20,6 +22,13 @@ struct Pair {
     friend ostream &operator<<(ostream &o, Pair p) {
         o << "{" << p.x << ", " << p.y << "}";
         return o;
+    }
+};
+
+struct cmp {
+    bool operator()(Pair a, Pair b) {
+        if (a.x != b.x) return b.x < a.x;
+        return b.y < a.y;
     }
 };
 
@@ -105,6 +114,7 @@ int main() {
     /*
      * DELETION
      * erase(input it)/erase(input first, input second) - erases elements at it or from [first, second)
+     * pop_back() - delete last element
      */
     vector<int> ea1{1, 2, 3, 4};
     ea1.erase(ea1.begin(), ea1.end() - 2);
@@ -127,17 +137,26 @@ int main() {
     vector<Pair> pv{{1,  5},
                     {1,  3},
                     {-1, 10}};
+    //sort using lambda
     sort(pv.begin(), pv.end(), [](const Pair &p1, const Pair &p2) {
         if (p1.x != p2.x) return p1.x - p2.x;
         else return p1.y - p2.y;
     });
     print(pv, "pairs sorted");
 
+    //sort using operator<
     vector<Interval> interval{{1,  5},
                               {1,  3},
                               {-1, 10}};
     sort(interval.begin(), interval.end());
     print(interval, "interval sorted");
+
+    //sort using custom struct
+    vector<Pair> pv2{{1, -5},
+                     {2, -1},
+                     {1, 0}};
+    sort(pv2.begin(), pv2.end(), cmp{});
+    print(pv2, "interval sorted via struct");
 
     /*
      * Upperbound = iterator to element in range [start, end) that is greater than val or last if
@@ -158,6 +177,7 @@ int main() {
      *      default-initialized values or v
      * - reserve(count) - changes capacity to count (BUT SIZE IS UNCHANGED) so vector doesn't have to resize as much
      * - clear() - clear vectors (capacity unchanged)
+     * - iota(InputIt st, InputIt end, Value v) - fills [st, end) with v,v+1, etc.
      */
     //assign
     vector<int> a1;
@@ -175,4 +195,15 @@ int main() {
     //reserve
     a2.reserve(10000); //size is unchanged
     cout << "a2 size after reserve: " << a2.size() << endl; //ADDS to size of vector!
+
+    //iota
+    vector<int> viota(10);
+    iota(viota.begin(), viota.end(), 0);
+    cout << "viota has values from 0 to 9: ";
+    print(viota);
+
+
 }
+
+
+
