@@ -47,7 +47,7 @@ struct Coord {
         return *this;
     }
 
-    //can return by reference and/or remove constmess
+    //can return by reference and/or remove constness
     const int &operator[](size_t id) const {
         if (id == 0) return x;
         return y;

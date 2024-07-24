@@ -119,7 +119,7 @@ struct FenwickTreeRURQ {
     /*
      * We show that sum[0, i] = sum(B1[0...i]) * i - sum(B2[0...i])
      * Let's say a range update (l, r, x) occurs. Then
-     * Condition : formula above = mathmathematical reasoning
+     * Condition : formula above = mathematical reasoning
      * i < l : d sum[0,i] = d (sum(B1[0...i]) * i - sum(B2[0...i]) = 0 (correct!)
      * l <= i <= r : d sum[0, i] = x * i - x * (l - 1) = x * (i - l + 1) (correct!)
      * r < i : d sum[0, i] = 0 * i - (x * (l - 1) - x * r) = x * (r - l + 1) (correct!)

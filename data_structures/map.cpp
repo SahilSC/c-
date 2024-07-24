@@ -52,7 +52,7 @@ int main() {
     cout << "pairs1: " << pairs1 << endl; //{ {-1, 10}: -1, {1, 1}: 2, {10, 4}: 7, {11, 1}: 5, }
 
     //3 - custom key function 2
-    auto lmbda = [&pairs1](const Pair &a, const Pair &b) {
+    auto lmbda = [](const Pair &a, const Pair &b) {
         return a.x - b.x != -1 ? a.x < b.x : a.y - b.y;
     };
     map<Pair, int, decltype(lmbda)> pairs2(lmbda);

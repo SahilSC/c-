@@ -9,31 +9,33 @@ struct Enemy {
     string name;
     int level;
 
-    void Attack(Enemy& enemy) {
+    void Attack(Enemy &enemy) {
         enemy.TakeDamage(*this);
     }
 
-    void TakeDamage(Enemy& attacker) {
+    void TakeDamage(Enemy &attacker) {
         cout << attacker.name << " attacked me!!" << endl;
     }
 
-    Enemy& setName(string _name) {
+    Enemy &setName(string _name) {
         name = _name;
+        return getRef();
     }
 
-    Enemy& setLevel(int _level) {
+    Enemy &setLevel(int _level) {
         level = _level;
+        return getRef();
     }
 
     void getPointerAddress() {
         cout << this << endl;
     }
 
-    Enemy& getRef() {
+    Enemy &getRef() {
         return *this;
     }
 
-    Enemy* getPointer() {
+    Enemy *getPointer() {
         return this;
     }
 
@@ -41,13 +43,13 @@ struct Enemy {
         return *this;
     }
 
-    Enemy& operator*=(int multiplier) {
+    Enemy &operator*=(int multiplier) {
         level *= multiplier;
         return *this;
     }
 };
 
-int main(){
+int main() {
     Enemy e{"Bob", 10};
     Enemy o{"Bill", 1};
     cout << &e << endl;
@@ -65,7 +67,7 @@ int main(){
 
     //2
     e.setName("Sam")
-     .setLevel(1000);
+            .setLevel(1000);
 
     //3
     e *= 10;
