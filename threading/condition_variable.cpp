@@ -33,7 +33,7 @@ void print(Args &&... args) {
  *   track of number of threads
  *   - Conditional variables block its caller on wait, semaphores do not have to block (only when
  *   internal counter is 0)
- /
+ */
 
 /*
  * condition_variable_any - allows efficienting waiting on any lock with .lock and .unlock

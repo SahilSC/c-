@@ -8,18 +8,19 @@
  *      variables (normal fields of a class)
  * 2) Lock - a synchronization mechanism that typically only allows one thread to own it at a time,
  *      usually protecting access to a critical section (spin-lock read-write lock, reentrant locks)
- * 3) Mutex - a specific type of lock that provides mutual exclusion to a section of critical code,
- *      allowing only one thread to access the section at a time. It is system wide (across processes)
+ * 3) Mutex - a specific type of lock that provides mutual exclusion when accessing shared
+ *      resources allowing only one thread to access the section at a time. It is system wide
+ *      (across processes)
+ */
 
 /*
  * Conditional Variable Vs. Semaphore
+ * - Both used for signaling
  * - A conditional variable waits efficiently until some condition occurs, whereas a semaphore acts
  *   as a counter simply keeps tracks of the number of threads accessing a critical section of code
  * - Conditional Variables are stateless (queue of waiting threads, calling notify_one with
  *   another thread after calling wait still forces a wait), semaphores have state (mutex + counter
  *   + queue, calling notify_one/signal allows future thread that calls wait to be put in ready q)
- * - Conditional variables are for more event driven application, semaphores are used to keep
- *   track of number of threads
  *   - Conditional variables block its caller on wait, semaphores do not have to block (only when
  *   internal counter is 0)
  */
@@ -29,7 +30,10 @@
  * - Mutex provides 1-access to piece of code, semaphore allows n-access
  * - Mutex typically used for accessing a shared resource, semaphores used for signaling
  * - Mutexes lock and unlock, semaphores wait and signal
+ * - Ownership: Mutexes can only be released by the owning threads, semaphores can be signaled by
+ *   anyone
  */
+
 
 /*
  * Mutex vs Condition Variable
